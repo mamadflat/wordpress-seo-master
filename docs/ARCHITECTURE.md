@@ -1,6 +1,6 @@
 # Architecture
 
-This document describes the architecture of Seokav 1.2.0.
+This document describes the architecture of Seokav 1.2.1.
 
 ## System Overview
 

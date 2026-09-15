@@ -4,7 +4,7 @@ Tags: seo, woocommerce, api, connector
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 8.0
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 
 A restricted API connector between Seokav, WordPress, and WooCommerce.
@@ -36,6 +36,10 @@ the Seokav REST namespace. Store it only in a trusted browser profile, use
 HTTPS in production, restrict allowed origins, and rotate exposed keys.
 
 == Changelog ==
+
+= 1.1.1 =
+* Restricted content editing to posts and pages with supported statuses.
+* Used the active WordPress category taxonomy consistently when WooCommerce is unavailable.
 
 = 1.1.0 =
 * Added a dedicated 48-character connector key and origin allowlist.

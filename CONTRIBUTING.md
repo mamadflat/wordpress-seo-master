@@ -14,8 +14,8 @@ WordPress connector improvements.
 ## Development Workflow
 
 ```bash
-git clone https://github.com/mamadflat/derakhtyar.git
-cd derakhtyar
+git clone https://github.com/mamadflat/wordpress-seo-master.git
+cd wordpress-seo-master
 npm run check
 npm run dev
 ```
