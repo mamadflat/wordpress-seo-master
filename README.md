@@ -1,6 +1,6 @@
 # Seokav
 
-[![Version](https://img.shields.io/badge/version-1.2.1-0d5e53)](./VERSION)
+[![Version](https://img.shields.io/badge/version-1.3.0-0d5e53)](./VERSION)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Validate](https://github.com/mamadflat/wordpress-seo-master/actions/workflows/validate.yml/badge.svg)](https://github.com/mamadflat/wordpress-seo-master/actions/workflows/validate.yml)
 
@@ -143,7 +143,7 @@ details.
 - [Development and Build](./docs/DEVELOPMENT.md)
 - [WordPress Connector](./docs/WORDPRESS-CONNECTOR.md)
 - [Release Process](./docs/RELEASE.md)
-- [Seokav 1.2.1 Release Notes](./docs/releases/1.2.1.md)
+- [Seokav 1.3.0 Release Notes](./docs/releases/1.3.0.md)
 - [Changelog](./CHANGELOG.md)
 - [Contributing](./CONTRIBUTING.md)
 - [Security Policy](./SECURITY.md)
