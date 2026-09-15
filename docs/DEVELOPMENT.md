@@ -12,8 +12,8 @@ The browser application has no installed dependencies and uses no bundler.
 ## Set Up and Run
 
 ```bash
-git clone https://github.com/mamadflat/derakhtyar.git
-cd derakhtyar
+git clone https://github.com/mamadflat/wordpress-seo-master.git
+cd wordpress-seo-master
 npm run check
 npm run dev
 ```

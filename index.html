@@ -34,7 +34,7 @@
 <body>
 <div class="app">
   <aside class="sidebar" id="sidebar">
-    <div class="brand"><span class="brand-mark">✦</span><div><strong>سئوکاو</strong><small>مرکز عملیات سئو</small></div><span class="beta">v1.2.0</span></div>
+    <div class="brand"><span class="brand-mark">✦</span><div><strong>سئوکاو</strong><small>مرکز عملیات سئو</small></div><span class="beta">v1.2.1</span></div>
     <div class="site-picker no-sites" id="sitePicker"><span class="site-avatar" id="siteAvatar">س</span><span class="site-copy"><b id="currentName">بدون سایت</b><small id="currentDomain">یک سایت اضافه کن</small></span><span>⌄</span><select id="siteSelect" aria-label="انتخاب سایت"></select></div>
     <nav id="nav">
       <button class="nav-btn active" data-page="overview"><span class="nav-ico">▦</span><span class="nav-label">مرور کلی</span></button>
@@ -73,7 +73,7 @@
 <script>
 (() => {
   'use strict';
-  const APP_VERSION='1.2.0';
+  const APP_VERSION='1.2.1';
   const STORAGE='seokav.public.dashboard.v2';
   const labels={overview:'مرور کلی',sites:'سایت‌ها',taxonomy:'ساختار دسته‌ها',tasks:'کارها',audit:'ممیزی ساختار',products:'محصولات',reports:'گزارش‌ها',settings:'تنظیمات و اتصال‌ها'};
   const $=id=>document.getElementById(id), fa=n=>Number(n||0).toLocaleString('fa-IR'), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

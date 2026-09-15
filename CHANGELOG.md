@@ -3,6 +3,19 @@
 All notable changes to Seokav are documented here. The project follows semantic
 versioning and the structure of [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.2.1] - 2026-09-15
+
+### Fixed
+
+- Corrected repository and GitHub Pages URLs in project documentation and issue templates.
+- Made release validation follow the current application version and verify connector metadata and security markers.
+- Restricted authenticated content editing to supported post types and statuses.
+- Made category reads and edits use the active WordPress category taxonomy when WooCommerce is unavailable.
+
+### Changed
+
+- Updated the bundled connector to 1.1.1 and rebuilt its release archive.
+
 ## [1.2.0] - 2026-09-03
 
 ### Added
@@ -43,6 +56,7 @@ versioning and the structure of [Keep a Changelog](https://keepachangelog.com/).
 - Structure audit, local SEO tasks, category exports, and browser backup/restore.
 - GitHub Pages deployment with no bundled site data.
 
-[1.2.0]: https://github.com/mamadflat/derakhtyar/releases/tag/v1.2.0
-[1.1.0]: https://github.com/mamadflat/derakhtyar/commits/18c3862
-[1.0.0]: https://github.com/mamadflat/derakhtyar/commits/c834407
+[1.2.1]: https://github.com/mamadflat/wordpress-seo-master/releases/tag/v1.2.1
+[1.2.0]: https://github.com/mamadflat/wordpress-seo-master/releases/tag/v1.2.0
+[1.1.0]: https://github.com/mamadflat/wordpress-seo-master/commits/18c3862
+[1.0.0]: https://github.com/mamadflat/wordpress-seo-master/commits/c834407

@@ -1,15 +1,15 @@
 # Seokav
 
-[![Version](https://img.shields.io/badge/version-1.2.0-0d5e53)](./VERSION)
+[![Version](https://img.shields.io/badge/version-1.2.1-0d5e53)](./VERSION)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Validate](https://github.com/mamadflat/derakhtyar/actions/workflows/validate.yml/badge.svg)](https://github.com/mamadflat/derakhtyar/actions/workflows/validate.yml)
+[![Validate](https://github.com/mamadflat/wordpress-seo-master/actions/workflows/validate.yml/badge.svg)](https://github.com/mamadflat/wordpress-seo-master/actions/workflows/validate.yml)
 
 Seokav is a privacy-first, multi-site SEO operations dashboard for WordPress and
 WooCommerce. It is a Persian RTL application that runs entirely in the browser,
 can read public WooCommerce catalog data without a plugin, and can edit products
 and product categories through the optional Seokav Connector plugin.
 
-**Live application:** [mamadflat.github.io/derakhtyar](https://mamadflat.github.io/derakhtyar/)
+**Live application:** [mamadflat.github.io/wordpress-seo-master](https://mamadflat.github.io/wordpress-seo-master/)
 
 ## Why Seokav?
 
@@ -82,7 +82,7 @@ Public mode uses the WooCommerce Store API. Connector mode uses a dedicated
 
 ### Use the hosted application
 
-1. Open the [live application](https://mamadflat.github.io/derakhtyar/).
+1. Open the [live application](https://mamadflat.github.io/wordpress-seo-master/).
 2. Select **Add Site**.
 3. Enter a display name and the full HTTPS domain of a WooCommerce site.
 4. Wait for public categories and published products to be imported.
@@ -94,8 +94,8 @@ Public mode uses the WooCommerce Store API. Connector mode uses a dedicated
 Requirements: Node.js 20 or newer.
 
 ```bash
-git clone https://github.com/mamadflat/derakhtyar.git
-cd derakhtyar
+git clone https://github.com/mamadflat/wordpress-seo-master.git
+cd wordpress-seo-master
 npm run check
 npm run dev
 ```
@@ -143,7 +143,7 @@ details.
 - [Development and Build](./docs/DEVELOPMENT.md)
 - [WordPress Connector](./docs/WORDPRESS-CONNECTOR.md)
 - [Release Process](./docs/RELEASE.md)
-- [Seokav 1.2.0 Release Notes](./docs/releases/1.2.0.md)
+- [Seokav 1.2.1 Release Notes](./docs/releases/1.2.1.md)
 - [Changelog](./CHANGELOG.md)
 - [Contributing](./CONTRIBUTING.md)
 - [Security Policy](./SECURITY.md)

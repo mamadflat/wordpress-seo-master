@@ -1,6 +1,6 @@
 # WordPress Connector
 
-Seokav Connector 1.1.0 adds an authenticated REST API for category, product, and
+Seokav Connector 1.1.1 adds an authenticated REST API for category, product, and
 content management. It is optional for public reading and required for editing.
 
 ## Requirements

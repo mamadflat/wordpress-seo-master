@@ -100,7 +100,7 @@ It does not delete or edit WordPress data.
 
 ### Connector test fails
 
-- Confirm Seokav Connector 1.1.0 is active.
+- Confirm Seokav Connector 1.1.1 is active.
 - Copy the key again without extra spaces.
 - Confirm the dashboard origin is allowed.
 - Confirm HTTPS works on WordPress.

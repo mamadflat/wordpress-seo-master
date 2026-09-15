@@ -55,7 +55,7 @@ release notes, and attach `seokav-connector.zip`.
 
 ## 6. Verify Production
 
-Open `https://mamadflat.github.io/derakhtyar/?v=X.Y.Z`. Verify the UI version,
+Open `https://mamadflat.github.io/wordpress-seo-master/?v=X.Y.Z`. Verify the UI version,
 complete graph on a real site, theme switch, and monthly task report.
 
 ## Rollback

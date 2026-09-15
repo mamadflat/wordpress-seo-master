@@ -3,7 +3,7 @@
  * Plugin Name: Seokav Connector
  * Plugin URI: https://seokav.app
  * Description: اتصال امن و محدود سئوکاو به وردپرس و ووکامرس برای مدیریت دسته‌ها، محصولات و متادیتای سئو.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Seokav
  * Requires at least: 6.4
  * Requires PHP: 8.0
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 }
 
 final class Seokav_Connector {
-    const VERSION = '1.1.0';
+    const VERSION = '1.1.1';
     const NAMESPACE = 'seokav/v1';
     const KEY_OPTION = 'seokav_connector_key';
     const ORIGINS_OPTION = 'seokav_connector_origins';
@@ -53,6 +53,18 @@ final class Seokav_Connector {
             }
         }
         return array_values(array_unique($origins));
+    }
+
+    private static function category_taxonomy() {
+        return taxonomy_exists('product_cat') ? 'product_cat' : 'category';
+    }
+
+    private static function supported_content_types() {
+        return ['post', 'page'];
+    }
+
+    private static function supported_content_statuses() {
+        return ['publish', 'draft', 'pending', 'private', 'future'];
     }
 
     public static function allowed_cors_headers($headers) {
@@ -216,6 +228,7 @@ final class Seokav_Connector {
     }
 
     public static function can_edit_content(WP_REST_Request $request) {
+        if (!in_array(sanitize_key($request['type']), self::supported_content_types(), true)) return false;
         return current_user_can('edit_post', absint($request['id'])) || self::valid_connector_key($request);
     }
 
@@ -271,7 +284,7 @@ final class Seokav_Connector {
         }
     }
 
-    private static function category_payload(WP_Term $term) {
+    private static function category_payload(WP_Term $term, $taxonomy = '') {
         return array_merge([
             'id' => $term->term_id,
             'name' => $term->name,
@@ -280,11 +293,11 @@ final class Seokav_Connector {
             'parent' => $term->parent,
             'count' => $term->count,
             'permalink' => get_term_link($term),
-        ], self::seo_meta($term->term_id, 'product_cat'));
+        ], self::seo_meta($term->term_id, $taxonomy));
     }
 
     public static function categories(WP_REST_Request $request) {
-        $taxonomy = taxonomy_exists('product_cat') ? 'product_cat' : 'category';
+        $taxonomy = self::category_taxonomy();
         $terms = get_terms([
             'taxonomy' => $taxonomy,
             'hide_empty' => false,
@@ -294,20 +307,24 @@ final class Seokav_Connector {
         if (is_wp_error($terms)) {
             return $terms;
         }
-        return rest_ensure_response(['categories' => array_map([__CLASS__, 'category_payload'], $terms)]);
+        return rest_ensure_response(['categories' => array_map(function ($term) use ($taxonomy) {
+            return self::category_payload($term, $taxonomy);
+        }, $terms)]);
     }
 
     public static function category(WP_REST_Request $request) {
-        $term = get_term(absint($request['id']), 'product_cat');
+        $taxonomy = self::category_taxonomy();
+        $term = get_term(absint($request['id']), $taxonomy);
         if (!$term || is_wp_error($term)) {
             return new WP_Error('seokav_category_missing', 'دسته پیدا نشد.', ['status' => 404]);
         }
-        return rest_ensure_response(self::category_payload($term));
+        return rest_ensure_response(self::category_payload($term, $taxonomy));
     }
 
     public static function update_category(WP_REST_Request $request) {
+        $taxonomy = self::category_taxonomy();
         $id = absint($request['id']);
-        $term = get_term($id, 'product_cat');
+        $term = get_term($id, $taxonomy);
         if (!$term || is_wp_error($term)) {
             return new WP_Error('seokav_category_missing', 'دسته پیدا نشد.', ['status' => 404]);
         }
@@ -329,13 +346,13 @@ final class Seokav_Connector {
             $args['parent'] = $parent;
         }
         if ($args) {
-            $result = wp_update_term($id, 'product_cat', $args);
+            $result = wp_update_term($id, $taxonomy, $args);
             if (is_wp_error($result)) {
                 return $result;
             }
         }
-        self::update_seo_meta($id, $request, 'product_cat');
-        clean_term_cache($id, 'product_cat');
+        self::update_seo_meta($id, $request, $taxonomy);
+        clean_term_cache($id, $taxonomy);
         return self::category($request);
     }
 
@@ -488,22 +505,30 @@ final class Seokav_Connector {
     }
 
     public static function content(WP_REST_Request $request) {
+        $type = sanitize_key($request['type']);
         $post = get_post(absint($request['id']));
-        if (!$post || $post->post_type !== sanitize_key($request['type'])) {
+        if (!in_array($type, self::supported_content_types(), true) || !$post || $post->post_type !== $type) {
             return new WP_Error('seokav_content_missing', 'محتوا پیدا نشد.', ['status' => 404]);
         }
         return rest_ensure_response(self::content_payload($post));
     }
 
     public static function update_content(WP_REST_Request $request) {
+        $type = sanitize_key($request['type']);
         $post = get_post(absint($request['id']));
-        if (!$post || $post->post_type !== sanitize_key($request['type'])) {
+        if (!in_array($type, self::supported_content_types(), true) || !$post || $post->post_type !== $type) {
             return new WP_Error('seokav_content_missing', 'محتوا پیدا نشد.', ['status' => 404]);
         }
         $update = ['ID' => $post->ID];
         if ($request->has_param('title')) $update['post_title'] = sanitize_text_field((string) $request->get_param('title'));
         if ($request->has_param('slug')) $update['post_name'] = sanitize_title((string) $request->get_param('slug'));
-        if ($request->has_param('status')) $update['post_status'] = sanitize_key((string) $request->get_param('status'));
+        if ($request->has_param('status')) {
+            $status = sanitize_key((string) $request->get_param('status'));
+            if (!in_array($status, self::supported_content_statuses(), true)) {
+                return new WP_Error('seokav_invalid_content_status', 'وضعیت محتوا معتبر نیست.', ['status' => 400]);
+            }
+            $update['post_status'] = $status;
+        }
         if ($request->has_param('content')) $update['post_content'] = wp_kses_post((string) $request->get_param('content'));
         if ($request->has_param('excerpt')) $update['post_excerpt'] = wp_kses_post((string) $request->get_param('excerpt'));
         if (count($update) > 1) {

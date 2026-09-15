@@ -23,7 +23,7 @@ body:
     id: version
     attributes:
       label: Version
-      placeholder: "Application 1.2.0 / Connector 1.1.0"
+      placeholder: "Application 1.2.1 / Connector 1.1.1"
     validations:
       required: true
   - type: textarea
