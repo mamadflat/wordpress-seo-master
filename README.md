@@ -1,6 +1,6 @@
 # Seokav
 
-[![Version](https://img.shields.io/badge/version-1.2.1-0d5e53)](./VERSION)
+[![Version](https://img.shields.io/badge/version-1.3.0-0d5e53)](./VERSION)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Validate](https://github.com/mamadflat/wordpress-seo-master/actions/workflows/validate.yml/badge.svg)](https://github.com/mamadflat/wordpress-seo-master/actions/workflows/validate.yml)
 
@@ -143,7 +143,7 @@ details.
 - [Development and Build](./docs/DEVELOPMENT.md)
 - [WordPress Connector](./docs/WORDPRESS-CONNECTOR.md)
 - [Release Process](./docs/RELEASE.md)
-- [Seokav 1.2.1 Release Notes](./docs/releases/1.2.1.md)
+- [Seokav 1.3.0 Release Notes](./docs/releases/1.3.0.md)
 - [Changelog](./CHANGELOG.md)
 - [Contributing](./CONTRIBUTING.md)
 - [Security Policy](./SECURITY.md)
@@ -162,6 +162,19 @@ This architecture means:
 - backups should be exported before clearing storage or changing devices;
 - each browser profile has an independent workspace;
 - connector keys must only be stored in trusted browser profiles.
+
+## Team mode
+
+The local-first release is still available for a private browser workspace. For
+shared work, run the Team API with PostgreSQL and set the public API URL in
+`config.js`. A Workspace owner can invite members, add several WordPress sites,
+and assign each member a separate site role (`viewer`, `editor`, or `manager`).
+Members only receive sites allowed by the server-side `site_members` policy.
+The API stores WordPress connector keys encrypted and proxies authorized
+requests without exposing those keys to member browsers.
+
+See [Team mode and site-level access](./docs/TEAM-MODE.md) for local setup and
+deployment requirements.
 
 ## Browser and Platform Support
 

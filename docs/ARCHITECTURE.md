@@ -1,6 +1,6 @@
 # Architecture
 
-This document describes the architecture of Seokav 1.2.1.
+This document describes the architecture of Seokav 1.3.0.
 
 ## System Overview
 
@@ -24,7 +24,10 @@ integration, editors, reports, and interaction logic.
                                   WordPress + WooCommerce data
 ```
 
-There is no Seokav backend, database, login service, proxy, or telemetry service.
+The local-first mode has no Seokav backend, database, login service, proxy, or
+telemetry service. Optional Team mode adds the Node API and PostgreSQL schema
+described in [Team mode](./TEAM-MODE.md); the same frontend can then load only
+the sites authorized for the signed-in user.
 
 ## Runtime Modules
 
@@ -45,6 +48,11 @@ logical modules:
 | Audit | Empty category, depth, and duplicate slug checks |
 | Reports | CSV, JSON, print, backup, and restore |
 | Persistence | Serialize the complete application state to localStorage |
+
+In Team mode, site membership and connector secrets are authoritative on the
+API. WordPress requests go through the API proxy, which checks the user's site
+role before forwarding an allowed request. Browser-local tasks and reports are
+still local unless a future sync module is enabled.
 
 ## State Model
 
