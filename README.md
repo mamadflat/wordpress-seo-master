@@ -163,6 +163,19 @@ This architecture means:
 - each browser profile has an independent workspace;
 - connector keys must only be stored in trusted browser profiles.
 
+## Team mode
+
+The local-first release is still available for a private browser workspace. For
+shared work, run the Team API with PostgreSQL and set the public API URL in
+`config.js`. A Workspace owner can invite members, add several WordPress sites,
+and assign each member a separate site role (`viewer`, `editor`, or `manager`).
+Members only receive sites allowed by the server-side `site_members` policy.
+The API stores WordPress connector keys encrypted and proxies authorized
+requests without exposing those keys to member browsers.
+
+See [Team mode and site-level access](./docs/TEAM-MODE.md) for local setup and
+deployment requirements.
+
 ## Browser and Platform Support
 
 Seokav targets current versions of Chromium, Chrome, Edge, Firefox, and Safari.

@@ -20,6 +20,13 @@ const requiredFiles = [
   'docs/USER-GUIDE.md',
   'docs/WORDPRESS-CONNECTOR.md',
   `docs/releases/${version}.md`,
+  'docs/TEAM-MODE.md',
+  'database/schema.sql',
+  'server/index.mjs',
+  'docker-compose.team.yml',
+  '.env.example',
+  'config.js',
+  'scripts/api.test.mjs',
   connectorReadmePath,
   connectorPath,
 ];
@@ -68,6 +75,14 @@ if (!connectorVersion || connectorVersion !== connectorConstant || connectorVers
 
 for (const marker of ["register_rest_route", "permission_callback", "hash_equals", "wp_nonce_field"]) {
   if (!connector.includes(marker)) throw new Error(`Connector is missing security marker: ${marker}`);
+}
+
+const api = await readFile('server/index.mjs', 'utf8');
+for (const marker of ["workspace_members", "site_members", "SEOKAV_ENCRYPTION_KEY", "HttpOnly", "X-Seokav-Key", "/api/sites/:siteId/members", "rateLimit"]) {
+  if (!api.includes(marker)) throw new Error(`Team API is missing security or access marker: ${marker}`);
+}
+if (!packageJson.dependencies?.express || !packageJson.dependencies?.pg) {
+  throw new Error('Team API dependencies are missing from package.json.');
 }
 
 console.log(`Seokav ${version}: validation passed (connector ${connectorVersion}).`);

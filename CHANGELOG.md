@@ -3,6 +3,17 @@
 All notable changes to Seokav are documented here. The project follows semantic
 versioning and the structure of [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.3.0] - Unreleased
+
+### Added
+
+- Team API with accounts, Workspace membership, invitations, audit logging, and
+  encrypted WordPress connector secrets.
+- Site-level access roles: viewer, editor, and manager.
+- Team dashboard for inviting members and assigning them to individual sites.
+- Server-side WordPress proxy that enforces site access before every request.
+- PostgreSQL schema, environment example, and local team-mode setup guide.
+
 ## [1.2.1] - 2026-09-15
 
 ### Fixed
@@ -57,6 +68,7 @@ versioning and the structure of [Keep a Changelog](https://keepachangelog.com/).
 - GitHub Pages deployment with no bundled site data.
 
 [1.2.1]: https://github.com/mamadflat/wordpress-seo-master/releases/tag/v1.2.1
+[1.3.0]: https://github.com/mamadflat/wordpress-seo-master/releases/tag/v1.3.0
 [1.2.0]: https://github.com/mamadflat/wordpress-seo-master/releases/tag/v1.2.0
 [1.1.0]: https://github.com/mamadflat/wordpress-seo-master/commits/18c3862
 [1.0.0]: https://github.com/mamadflat/wordpress-seo-master/commits/c834407
